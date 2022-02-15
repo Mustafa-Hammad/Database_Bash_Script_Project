@@ -1,0 +1,83 @@
+#!/bin/bash 
+
+# create database using bash script
+
+# By Mustafa Raed and Aya Alagamy 
+
+cd ~/bash_project
+
+select choice in "Press 1 to Create Database                                                                                                         " "Press 2 to List Databases                                                                                                                          " "Press 3 to Connect to Database                                                                                                                     " "Press 4 to Drop Database                                                                                                                           " "Press 5 to Exiti" 
+
+do 
+
+	#Create DB
+	while ([ $REPLY -eq "1" ])
+		do 
+			echo -n "Please enter Database name  ";
+			read n 
+			 if [  -d "./$n" ]
+                        then
+                                echo "Database alredy exist ";
+                                break
+			else
+
+				mkdir ./$n
+				echo "Database created Successfully"
+				break
+			fi
+		done
+
+
+	#List DB
+	while ([ $REPLY -eq "2" ])
+                do
+
+                       	ls  .
+                       	break
+		done
+
+
+	#Connect DB
+	while ([ $REPLY -eq "3" ])
+                do
+                        echo -n "Please enter Database name to connect  ";
+                        read c
+			if [ ! -d "./$c" ] 
+			then 
+				echo "No Database with $c name";
+				break
+			else 
+                       		export c 
+				./Bash_project_table
+                	        break
+			fi	
+		done
+
+
+	#Drop DB
+	while ([ $REPLY -eq "4" ])
+                do
+                        echo -n "Please enter Database name to delete  ";
+			read n;
+
+			 if [ ! -d "./$n" ]
+                        then
+                                echo "No Database with $n name";
+                                break
+			else
+
+				rm  -R ./$n
+				echo "Database droped Successfully"
+                        	break
+			fi 
+		done
+
+
+	#Exit
+	while ([ $REPLY -eq "5" ])
+                do
+			cd ~
+                        exit
+                        break
+                done
+done
