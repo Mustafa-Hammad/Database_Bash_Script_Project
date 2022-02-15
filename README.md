@@ -15,5 +15,6 @@ and then there is another menu to choose from options related to tables:
 4) Select from table
 5) Delete from table
 6) Update from table
-7) Exit
+7) List Tables
+8) Exit
 
