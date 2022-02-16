@@ -1,0 +1,109 @@
+#!/bin/bash 
+
+# create database using bash script
+
+# By Mustafa Raed and Aya Alagamy 
+clear
+cd ~/bash_project
+echo "    "
+echo "============== Database Menu ==============" 
+echo "    "
+menu(){
+echo " "
+echo "click 'Enter' to return back " 
+read l
+clear
+echo "    "
+echo "============== Database Menu ==============" 
+echo "    "
+echo "Press 1 to Create Database" 
+echo "Press 2 to List Databases" 
+echo "Press 3 to Connect to Database"
+echo "Press 4 to Drop Database"
+echo "Press 5 to Exit"
+echo " "
+
+}
+
+
+select choice in "Press 1 to Create Database                                                                                                         " "Press 2 to List Databases                                                                                                                          " "Press 3 to Connect to Database                                                                                                                     " "Press 4 to Drop Database                                                                                                                           " "Press 5 to Exit" 
+
+do 
+echo " "
+	#Create DB
+	while ([ $REPLY -eq "1" ])
+		do 
+			echo -n "Please enter Database name  ";
+			read n 
+			 if [  -d "./$n" ]
+                        then
+                                echo "Database alredy exist ";
+				menu
+                                break
+			else
+
+				mkdir ./$n
+				echo "Database created Successfully"
+				menu
+				break
+			fi
+		done
+
+
+	#List DB
+	while ([ $REPLY -eq "2" ])
+                do
+
+                       	ls  .
+			menu
+                       	break
+		done
+
+
+	#Connect DB
+	while ([ $REPLY -eq "3" ])
+                do
+                        echo -n "Please enter Database name to connect  ";
+                        read c
+			if [ ! -d "./$c" ] 
+			then 
+				echo "No Database with $c name";
+				menu		
+				break
+			else 
+                       		export c 
+				./Bash_project_table
+                	        break
+			fi	
+		done
+
+
+	#Drop DB
+	while ([ $REPLY -eq "4" ])
+                do
+                        echo -n "Please enter Database name to delete  ";
+			read n;
+
+			 if [ ! -d "./$n" ]
+                        then
+                                echo "No Database with $n name";
+				menu
+                                break
+			else
+
+				rm  -R ./$n
+				echo "Database droped Successfully"
+				menu
+                        	break
+			fi 
+		done
+
+
+	#Exit
+	while ([ $REPLY -eq "5" ])
+                do
+			cd ~
+                        exit
+                        break
+                done
+done
