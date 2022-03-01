@@ -40,6 +40,10 @@ echo " "
                                 echo "Database alredy exist ";
 				menu
                                 break
+			elif ! [[ $n =~ ^[a-zA-Z][a-zA-Z0-9]*$ ]]; then 
+				echo "Cannot use special char or space"
+				menu
+                                break
 			else
 
 				mkdir ./$n
