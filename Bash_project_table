@@ -46,6 +46,12 @@ echo " "
 				ls ./$c
 				table_menu
                                 break
+			elif ! [[ $n =~ ^[a-zA-Z][a-zA-Z0-9]*$ ]]; then 
+				echo "No Table with $n Name"
+				echo "Avilibol Table :   " 
+				ls ./$c
+				table_menu
+                                break
 			else
 
 				rm ./$c/$n.csv
@@ -64,8 +70,12 @@ echo " "
                          
 			echo -n "Please enter Table name  ";
                         read n
-       					
-                       	if [ ! -f "./$c/$n.csv" ] 
+       			
+		if ! [[ $n =~ ^[a-zA-Z][a-zA-Z0-9]*$ ]]; then 
+				echo "Cannot use special char or space"
+				table_menu
+                                break
+                       	elif [ ! -f "./$c/$n.csv" ] 
 			then 
 			
 
@@ -280,7 +290,7 @@ echo " "
                         	read old
  				echo -n "Please enter new info  ";
                         	read new
-                        	sed -i -e '/'$m'/s/'$old'/'$new'/' ./$c/$n.csv
+                        	sed -i -e '/'$m'/s/,'$old',/,'$new',/' ./$c/$n.csv
 				echo "Data updated Successfully"
 			table_menu
                         	break
